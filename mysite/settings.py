@@ -82,18 +82,18 @@ DATABASES = {
        # 'HOST': os.environ["PGHOST"],
        # 'PORT': os.environ["PGPORT"],
 
-         'NAME': BASE_DIR / 'db.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
 
-       # 'ENGINE': 'sql_server.pyodbc',
-       # 'NAME': 'Restaurant',
-       # 'USER': 'portafolio',
-       # 'PASSWORD' : 'BHK7wSzRFUY79df',
-       # 'HOST': 'portafolio.database.windows.net',
-       # 'PORT':'',
-       # 'OPTIONS':{ 
-       #     'driver': 'ODBC Driver 17 for SQL Server',
-       #     'isolation_level':'READ UNCOMMITTED' #PARA PREVENIR DEADLOCKS
-        # }
+        'ENGINE': 'sql_server.pyodbc',
+        'NAME': 'Restaurant',
+        'USER': 'portafolio',
+        'PASSWORD' : 'BHK7wSzRFUY79df',
+        'HOST': 'portafolio.database.windows.net',
+        'PORT':'',
+        'OPTIONS':{ 
+            'driver': 'ODBC Driver 17 for SQL Server',
+            'isolation_level':'READ UNCOMMITTED' #PARA PREVENIR DEADLOCKS
+         }
     }
 }
 
