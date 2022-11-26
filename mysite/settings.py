@@ -75,12 +75,25 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ["PGDATABASE"],
-        'USER': os.environ["PGUSER"],
-        'PASSWORD': os.environ["PGPASSWORD"],
-        'HOST': os.environ["PGHOST"],
-        'PORT': os.environ["PGPORT"],
+       # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
+       # 'NAME': os.environ["PGDATABASE"],
+       # 'USER': os.environ["PGUSER"],
+       # 'PASSWORD': os.environ["PGPASSWORD"],
+       # 'HOST': os.environ["PGHOST"],
+       # 'PORT': os.environ["PGPORT"],
+
+         'NAME': BASE_DIR / 'db.sqlite3',
+
+       # 'ENGINE': 'sql_server.pyodbc',
+       # 'NAME': 'Restaurant',
+       # 'USER': 'portafolio',
+       # 'PASSWORD' : 'BHK7wSzRFUY79df',
+       # 'HOST': 'portafolio.database.windows.net',
+       # 'PORT':'',
+       # 'OPTIONS':{ 
+       #     'driver': 'ODBC Driver 17 for SQL Server',
+       #     'isolation_level':'READ UNCOMMITTED' #PARA PREVENIR DEADLOCKS
+        # }
     }
 }
 
