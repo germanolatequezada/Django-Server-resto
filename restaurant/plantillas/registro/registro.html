@@ -1,0 +1,58 @@
+﻿{% load static %}
+<html>
+
+<head>
+  <!--Titulo de la pagina-->
+  <title>Registro</title>
+  <!--Tipo de caracteres-->
+  <meta charset="utf-8">
+  <!--Tamaño inicial pagina-->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!--Compatibilidad navegadores-->
+  <meta http-equiv="x-ua-compatible" content="ie-edge">
+  <!--Conexion archivo css-->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/registro.css' %}">
+  <!--Estilos predeterminados para la pestaña Registro-->
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+  </style>
+</head>
+
+<body class="text-center">
+  <!--Inicio Formulario de registro-->
+  <form class="form-signin" action="/carta" method="POST">{% csrf_token %}
+    <!--Mensaje de cabecera-->
+    <h1 class="h3 mb-3 font-weight-normal" style="color:black" ;>
+      Ingresa el N° de tu Mesa
+
+    </h1>
+    <hr>
+    </hr>
+    <!--NUMERO DE MESA-->
+    <input name="numero_mesa" class="form-control" placeholder="Número de mesa " required autofocus>
+    <hr>
+    </hr>
+    <button type="submit" class="btn btn-outline-info ">
+      Registrar mesa
+    </button>
+    <br>
+    <hr>
+    </hr>
+
+  </form>
+
+  <!---Java script-->
+  <script src="{% static 'css/assets/dist/js/jquery-3.5.1.slim.min.js' %}"></script>
+  <script src="{% static 'css/assets/dist/js/popper.min.js' %}"></script>
+  <script src="{% static 'css/assets/dist/js/bootstrap.min.js' %}"></script>
+</body>
+
+</html>

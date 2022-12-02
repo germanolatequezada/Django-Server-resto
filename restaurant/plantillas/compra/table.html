@@ -1,0 +1,26 @@
+<div class="row w-75 h-75 mx-auto my-auto table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">NOMBRE</th>
+                <th scope="col">Unidad</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for compra in compras %}
+            <tr>
+                <th scope="row">{{compra.id}}</th>
+                <td>{{compra.nombre}}</td>
+                <td>{{compra.unidad}}</td>
+                <td>
+                    {% include 'compra/delete.html' %}
+                </td>
+                <td>
+                    {% include 'compra/update.html' %}                    
+                </td>                
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,43 @@
+{% load static %}
+<div id="carousel-captions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carousel-captions" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carousel-captions" data-bs-slide-to="1"
+            aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carousel-captions" data-bs-slide-to="2"
+            aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner w-75 mx-auto my-auto" >
+        <div class="carousel-item active">
+            <img src="{% static 'img/carousel/barquillo.jpg' %}" class="d-block w-100 h-75"
+                alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5></h5>
+                <p></p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'img/carousel/cerveza_artesanal.jpg' %}" class="d-block w-100 h-75"
+                alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5></h5>
+                <p></p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'img/carousel/refresco_ccu.jpg' %}" class="d-block w-100 h-75"
+                alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5></h5>
+                <p></p>
+            </div>
+        </div>      
+    </div>
+    <button class="carousel-control-prev w-50 h-100" type="button" data-bs-target="#carousel-captions" data-bs-slide="prev">
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next w-50 h-100" type="button" data-bs-target="#carousel-captions" data-bs-slide="next">
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>

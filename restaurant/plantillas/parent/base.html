@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Siglo XXI</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom/custom.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap/icons/bootstrap-icons.css' %}">
+    {% block head %}{% endblock %}    
+</head>
+<body>
+    {% block content %}{% endblock %}
+    <script src="{% static 'js/jquery/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'js/popper/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap/bootstrap.min.js' %}"></script>    
+</body>
+</html>

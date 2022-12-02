@@ -1,0 +1,213 @@
+{% extends "base.html" %}{% load static %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/custom/features.css' %}">
+<style>
+  .bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+
+  @media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+    }
+  }
+
+  .b-example-divider {
+    height: 3rem;
+    background-color: rgba(0, 0, 0, 0.1);
+    border: solid rgba(57, 56, 56, 0.15);
+    border-width: 1px 0;
+    box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+  }
+
+  .b-example-vr {
+    flex-shrink: 0;
+    width: 1.5rem;
+    height: 100vh;
+  }
+
+  .bi {
+    vertical-align: -.125em;
+    fill: currentColor;
+  }
+
+  .nav-scroller {
+    position: relative;
+    z-index: 2;
+    height: 2.75rem;
+    overflow-y: hidden;
+  }
+
+  .nav-scroller .nav {
+    display: flex;
+    flex-wrap: nowrap;
+    padding-bottom: 1rem;
+    margin-top: -1px;
+    overflow-x: auto;
+    text-align: center;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+</style>
+{% endblock %}
+{% block content %}
+<h1>SIGLO XXI</h1>
+{% if user.is_authenticated %} 
+<form id="frm-login" method="GET" action="/login">{% csrf_token %}
+  <button type="submit" class="btn btn-warning"><i class="bi bi-house"></i></button>
+</form>
+{% else %}
+<form id="frm-login" method="GET" action="/login">{% csrf_token %}
+  <button type="submit" class="btn btn-primary"><i class="bi bi-person"></i> LOGIN</button>
+</form>
+{% endif %}
+<div class="b-example-divider"></div>
+<!-- Menu comidas -->
+<div class="container px-4 py-5" id="custom-cards">
+  <h2 class="pb-2 border-bottom">Menú</h2>
+  <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+    <!-- Platos tipicos -->
+    <div class="col">
+      <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
+        style="background-image: url({% static ''%}{{plato_tipico}})">
+        <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+          <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">PLATOS TÍPICOS </h3>
+          <a href="detalle_carta?tipo=plato tipico">
+            <button type="button" class="btn btn-outline-info">
+              VER
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- Sopas -->
+    <div class="col">
+      <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
+        style="background-image: url({% static ''%}{{sopa}})">
+        <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+          <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"><br> SOPAS</h3>
+          <a href="detalle_carta?tipo=sopa">
+            <button type="button" class="btn btn-outline-info">
+              VER
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- Ensaladas -->
+    <div class="col">
+      <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
+        style="background-image: url({% static ''%}{{ensalada}})">
+        <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+          <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"><br> ENSALADAS</h3>
+          <a href="detalle_carta?tipo=ensalada">
+            <button type="button" class="btn btn-outline-info">
+              VER
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Postres -->
+<div class="container px-4 py-5" id="custom-cards">
+  <h2 class="pb-2 border-bottom">Postres</h2>
+  <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+    <!-- Helados -->
+    <div class="col">
+      <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
+        style="background-image: url({% static ''%}{{helado}})">
+        <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+          <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"><br> HELADOS</h3>
+          <a href="detalle_carta?tipo=helado">
+            <button type="button" class="btn btn-outline-info">
+              VER
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- Mousse -->
+    <div class="col">
+      <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
+        style="background-image: url({% static ''%}{{mousse}})">
+        <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+          <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"><br> MOUSSE</h3>
+          <a href="detalle_carta?tipo=mousse">
+            <button type="button" class="btn btn-outline-info">
+              VER
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- Pasteles -->
+    <div class="col">
+      <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
+        style="background-image: url({% static ''%}{{pastel}})">
+        <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
+          <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"><br> PASTELES </h3>
+          <a href="detalle_carta?tipo=pastel">
+            <button type="button" class="btn btn-outline-info">
+              VER
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Bebestibles -->
+<div class="container px-4 py-5" id="custom-cards">
+  <h2 class="pb-2 border-bottom">Bebestibles</h2>
+  <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+    <!-- Cervezas -->
+    <div class="col">
+      <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
+        style="background-image: url({% static ''%}{{cerveza}})">
+        <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+          <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"><br> CERVEZAS</h3>
+          <a href="detalle_carta?tipo=cerveza">
+            <button type="button" class="btn btn-outline-info">
+              VER
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- Bebidas -->
+    <div class="col">
+      <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
+        style="background-image: url({% static ''%}{{bebida}})">
+        <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+          <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"><br> BEBIDAS</h3>
+          <a href="detalle_carta?tipo=bebida">
+            <button type="button" class="btn btn-outline-info">
+              VER
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- Jugos -->
+    <div class="col">
+      <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
+        style="background-image: url({% static ''%}{{jugo}})">
+        <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
+          <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"><br> JUGOS </h3>
+          <a href="detalle_carta?tipo=jugo">
+            <button type="button" class="btn btn-outline-info">
+              VER
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

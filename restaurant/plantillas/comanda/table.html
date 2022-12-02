@@ -1,0 +1,25 @@
+<div class="row w-75 h-75 mx-auto my-auto table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">MESA</th>
+                <th scope="col">USUARIO</th>
+                <th scope="col">CLIENTE</th>
+                <th scope="col">FECHA INICIO</th>
+                <th scope="col">FECHA FIN</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for comanda in comandas %}
+            <tr>
+                <th scope="row">{{comanda.id}}</th>
+                <td>{{comanda.mesa}}</td>
+                <td>{{comanda.usuario}}</td>
+                <td>{{comanda.cliente}}</td>
+                <td>{{comanda.fecha_inicio}}</td>
+                <td>{{comanda.fecha_fin}}</td>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

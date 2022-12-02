@@ -1,0 +1,12 @@
+<form id="frm-find" action="/detalle_comanda/" method="POST" class="w-75 mx-auto">{% csrf_token %} 
+    <input type="hidden" name="action" value="find">
+    <div class="form-group my-2">
+        <label for="txt-nombre">MESA</label>
+        <select id="txt-mesa" name="mesa" class="form-select">
+            {% for mesa in mesas %}
+            <option value="{{mesa.id}}">{{mesa.nombre}}</option>
+            {% endfor %}
+          </select>        
+    </div>         
+    <input type="submit" class="btn btn-primary" value="Buscar">
+</form>

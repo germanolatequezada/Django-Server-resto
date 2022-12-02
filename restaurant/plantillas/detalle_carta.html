@@ -1,0 +1,159 @@
+{% extends "base.html" %}{% load static %}
+{% block head %}
+<style>
+    body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #343a40;
+        text-align: left;
+        background-image: url({% static 'img/background/fondo.jpg' %});
+        background-attachment: fixed;
+        background-size: 100% 100%;
+    }
+
+
+
+    .botones {
+        display: flex;
+        flex-direction: row;
+
+
+    }
+
+    .boton {
+        margin-left: 8px;
+        margin-right: 8px;
+
+
+    }
+</style>
+{% endblock %}
+{% block content %}
+<!--Barra de Presentacion-->
+<main role="main">
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h2>
+                Bienvenido al Menú de {{tipo}}
+            </h2>
+            <p class="lead text-muted">
+                Nuestro Restaurant a sido conocido hace más de 50 años por sus exquistas comidas caseras.
+            </p>
+            <p>
+                <i class="bi bi-cart-check-fill ">CONTADOR: {{contador}}</i>
+            </p>
+        </div>
+    </section>
+</main>
+{% if user.is_authenticated %}
+<form id="frm-login" method="GET" action="/login">{% csrf_token %}
+    <button type="submit" class="btn btn-warning"><i class="bi bi-house"></i></button>
+</form>
+{% else %}
+<form id="frm-login" method="GET" action="/login">{% csrf_token %}
+    <button type="submit" class="btn btn-primary"><i class="bi bi-person"></i> LOGIN</button>
+</form>
+{% endif %}
+<div class="album py-5 ">
+    <div class="container">
+        <div class="row">
+            {% if platos %}
+            {% for plato in platos %}
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="{% static ''' %}{{plato.url_img}}" width="100%" height="225">
+                    <div class="card-body">
+                        <p class="card-text">
+                            <strong>{{plato.nombre}}</strong>
+                            <br>
+                            $ {{plato.precio}}
+                            </br>
+                        </p>
+                        
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <section id="sect">
+                                    <div class="midl botones  ">
+                                        {% if user.is_authenticated %}
+                                        <button type="button btn-primary" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#staticBackdrop-{{ plato.id }}">
+                                            <i class="bi bi-plus"></i>
+                                        </button>
+                                        <div class="modal fade" id="staticBackdrop-{{ plato.id }}"
+                                            data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="staticBackdropLabel">Agregar {{ plato.nombre }}</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form id="frm-add-{{ plato.id }}"
+                                                            action="/detalle_carta/" method="POST" class="w-75 mx-auto">{% csrf_token %}
+                                                            <input type="hidden" name="add" value="update">
+                                                            <input type="hidden" name="tipo" value="{{tipo}}">
+                                                            <div class="form-group my-2">
+                                                                <label for="txt-nombre-{{ plato.id }}">MESA - COMANDA</label>
+                                                                <select id="txt-mesa-{{ plato.id }}" name="comanda" class="form-select">
+                                                                    {% for comanda in comandas %}
+                                                                    <option value="{{comanda.id}}">{{comanda.mesa}}</option>
+                                                                    {% endfor %}
+                                                                  </select>        
+                                                            </div>                                                            
+                                                            <div class="form-group my-2">
+                                                                <input type="hidden" name="plato" value="{{ plato.id }}">                                                                
+                                                                <label for="txt-nombre-{{ plato.id }}">NOMBRE</label>
+                                                                <input type="text" id="txt-nombre-{{ plato.id }}" name="nombre"
+                                                                    readonly class="form-control"
+                                                                    value="{{plato.nombre}}" disabled>
+                                                            </div>
+                                                            <div class="form-group my-2">
+                                                                <label for="txt-cantidad-{{ plato.id }}">CANTIDAD</label>
+                                                                <input type="text" id="txt-cantidad-{{ plato.id }}" name="cantidad"
+                                                                    class="form-control" value="1" readonly>
+                                                            </div> 
+                                                            <button type="button" class="btn btn-warning" value="" onclick="minus_comanda({{ plato.id }})">
+                                                                <i class="bi bi-clipboard-minus"></i>
+                                                            </button>
+                                                            <button type="button" class="btn btn-success plus" value="" onclick="add_comanda({{ plato.id }})">
+                                                                <i class="bi bi-clipboard-plus"></i>
+                                                            </button>                                             
+                                                            <div class="form-group my-2">
+                                                                <label for="txt-nombre">PRECIO</label>
+                                                                <input type="text" id="txt-precio-{{ plato.id }}" name="precio"
+                                                                    class="form-control" value="{{plato.precio}}" readonly>
+                                                                    <input type="hidden" id="txt-valor-plato-{{ plato.id }}" name="valor-plato"
+                                                                    class="form-control" value="{{plato.precio}}" >                                                                    
+                                                            </div>                                                                                                                        
+                                                            <button type="submit" class="btn btn-primary"><i class="bi bi-sd-card"></i></button>                                                                
+                                                            <button type="reset" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-danger"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+<script src="{% static 'js/custom/carta/detalle_carta.js' %}"></script>
+{% endblock %}

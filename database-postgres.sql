@@ -1,0 +1,3 @@
+
+/*CREATE DATABASE */
+CREATE DATABASE  restaurant_bd ENCODING = 'UTF8';

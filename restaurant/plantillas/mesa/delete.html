@@ -1,0 +1,5 @@
+<form id="frm-delete-{{ mesa.id }}" method="POST" action="/mesa/">{% csrf_token %}
+    <input type="hidden" name="action" value="delete">
+    <input id="txt-id" type="hidden" name="id" value="{{  mesa.id }}">
+    <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+</form>
